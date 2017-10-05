@@ -4,17 +4,14 @@ public class Shield {
 	private int Energy;
 	public static final int maxEnergy=10000;
 	public Boolean ShieldUp;
-	
 		
 	public Shield(){
 		ShieldUp=false;
 		Energy=maxEnergy;
 	}
-	
 	public int getEnergy() {
 		return Energy;
 	}
-
 	public void setEnergy(int energy) {
 		if(energy<0) {
 			throw new IllegalArgumentException("Energy cannot be negative");

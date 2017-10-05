@@ -8,8 +8,6 @@ import org.junit.rules.ExpectedException;
 
 import Shield.Shield;
 
-
-
 public class ShieldTest {
 
 	Shield shield;
@@ -39,29 +37,28 @@ public class ShieldTest {
 	public void correctAmountOfEnergyAdded() {
 		//Given
 		shield.setEnergy(10);
-		//when
+		//When
 		shield.addEnergy(5);
-		//then
+		//Then
 		Assert.assertEquals(15, shield.getEnergy());
 	}
 	@Test
 	public void energyCannotExceedMaxEnergy() {
-		//given
+		//Given
 		shield.setEnergy(9700);
-		//when
+		//When
 		shield.addEnergy(500);
-		//then
+		//Then
 		Assert.assertEquals(Shield.maxEnergy, shield.getEnergy());
 	}
 	@Test
 	public void cannotAddNegativeEnergy() {
-		//given
+		//Given
 		shield.setEnergy(600);
-		//when
+		//When
 		thrown.expect(IllegalArgumentException.class);
 		thrown.expectMessage("Cannot add Negative Energy");
-		shield.addEnergy(-20);
-		
+		shield.addEnergy(-20);	
 	}
 	@Test
 	public void getShieldAvailableEnergyCapacity() {
@@ -74,9 +71,9 @@ public class ShieldTest {
 	public void correctAmountDamageSustained(){
 		//Given
 		shield.setEnergy(100);
-		//when
+		//When
 		shield.takeHit(10);
-		//then
+		//Then
 		Assert.assertEquals(90, shield.getEnergy());
 	}
 	@Test
@@ -85,32 +82,26 @@ public class ShieldTest {
 		shield.setEnergy(100);
 		//When
 		shield.takeHit(200);
-		//then
+		//Then
 		Assert.assertEquals(0, shield.getEnergy());
-		
 	}
 	@Rule
 	public ExpectedException thrown= ExpectedException.none();
 
-	
 	@Test
 	public void cannotTakeNegativeHit() {
 		//Given
 		shield.setEnergy(100);
-		//When
+		//Then
 		thrown.expect(ArithmeticException.class);
 		thrown.expectMessage("damageAmount cannot be negative");
-		shield.takeHit(-200);
-		//then	
+		shield.takeHit(-200);	
 	}
-	
 	@Test
 	public void cannotSetEnergyBelowMinimum() {
-		//Given
 		thrown.expect(IllegalArgumentException.class);
 		thrown.expectMessage("Energy cannot be negative");
-		shield.setEnergy(-10);
-		
+		shield.setEnergy(-10);	
 	}
 	@Test
 	public void cannotSetEnergyAboveMaximum() {
